@@ -13,5 +13,11 @@ router.post(
 router.post("/login", validateBody(schemas.loginSchema), controllers.login);
 router.get("/current", authenticate, controllers.getCurrent);
 router.post("/logout", authenticate, controllers.logout);
+router.patch(
+  "/subscription",
+  validateBody(schemas.patchSubscriptionSchema),
+  authenticate,
+  controllers.update
+);
 
 module.exports = router;
