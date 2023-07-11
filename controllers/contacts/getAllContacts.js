@@ -1,15 +1,29 @@
 const { Contact } = require("../../models/contact");
 
-const getAll = async (req, res, next) => {
+const getAll = async (req, res) => {
   const { _id: owner } = req.user;
-  const { page = 1, limit = 20, favorite: FavoriteValue } = req.query;
+  const { page = 1, limit = 20, favorite: favoriteValue } = req.query;
   const skip = (page - 1) * limit;
-
-  const result = await Contact.find({ owner, favorite: FavoriteValue }, null, {
-    skip,
-    limit,
-  });
-  res.json(result);
+  if (favoriteValue) {
+    const result = await Contact.find(
+      { owner, favorite: favoriteValue },
+      {},
+      {
+        skip,
+        limit,
+      }
+    );
+    res.json(result);
+  } else {
+    const result = await Contact.find(
+      { owner },
+      {},
+      {
+        skip,
+        limit,
+      }
+    );
+    res.json(result);
+  }
 };
-
 module.exports = getAll;
