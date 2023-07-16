@@ -32,4 +32,6 @@ router.patch(
   validateBody(schemas.patchFavoriteSchema),
   controllers.updateFavorite
 );
+
+router.get("/");
 module.exports = router;
