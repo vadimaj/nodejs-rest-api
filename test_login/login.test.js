@@ -1,8 +1,9 @@
 const mongoose = require("mongoose");
 const request = require("supertest");
 const app = require("../app.js");
-const DB_HOST_TEST =
-  "mongodb+srv://vadimaj:EGcGs9.aaQZ5Hsx@cluster0.txu1qdq.mongodb.net/contacts_db_test?retryWrites=true&w=majority";
+const { DB_HOST_TEST } = process.env;
+//const DB_HOST_TEST =
+// "mongodb+srv://vadimaj:EGcGs9.aaQZ5Hsx@cluster0.txu1qdq.mongodb.net/contacts_db_test?retryWrites=true&w=majority";
 mongoose.set("strictQuery", true);
 describe("login test", () => {
   beforeAll(async () => {
